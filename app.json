@@ -29,6 +29,11 @@
     "name": "Gerald Lankamp",
     "email": "gerald.lankamp@gmail.com"
   },
+  "source": "https://github.com/qan-ai/homey-swannone-keyfob",
+  "bugs": {
+    "url": "https://github.com/qan-ai/homey-swannone-keyfob/issues"
+  },
+  "support": "https://github.com/qan-ai/homey-swannone-keyfob/issues",
   "flow": {
     "triggers": [
       {
