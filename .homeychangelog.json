@@ -1,5 +1,8 @@
 {
   "1.0.0": {
     "en": "Initial release: pair the SwannOne Key Fob (SWO-KEF1PA) directly to Homey and use its Home, Sleep, Away and Panic buttons in flows."
+  },
+  "1.0.1": {
+    "en": "Use the real device photo/icon design and add App Store product images."
   }
 }
