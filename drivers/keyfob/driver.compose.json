@@ -1,0 +1,43 @@
+{
+  "id": "keyfob",
+  "name": {
+    "en": "SwannOne Key Fob",
+    "nl": "SwannOne Key Fob"
+  },
+  "class": "button",
+  "capabilities": [],
+  "platforms": ["local"],
+  "connectivity": ["zigbee"],
+  "images": {
+    "small": "/drivers/keyfob/assets/images/small.png",
+    "large": "/drivers/keyfob/assets/images/large.png",
+    "xlarge": "/drivers/keyfob/assets/images/xlarge.png"
+  },
+  "zigbee": {
+    "manufacturerName": "SwannONe",
+    "productId": ["SWO-KEF1PA"],
+    "endpoints": {
+      "1": {
+        "clusters": [0],
+        "bindings": [1281]
+      }
+    },
+    "learnmode": {
+      "instruction": {
+        "en": "Hold the pair button on the back of the key fob until the LED flashes, then release. Keep the fob close to Homey while it is discovered.",
+        "nl": "Houd de pairing-knop aan de achterkant van de key fob ingedrukt tot het lampje knippert en laat dan los. Houd de fob dicht bij Homey tijdens het zoeken."
+      }
+    }
+  },
+  "pair": [
+    {
+      "id": "list_devices",
+      "template": "list_devices",
+      "navigation": { "next": "add_devices" }
+    },
+    {
+      "id": "add_devices",
+      "template": "add_devices"
+    }
+  ]
+}

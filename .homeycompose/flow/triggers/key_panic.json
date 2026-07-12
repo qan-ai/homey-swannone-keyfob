@@ -1,0 +1,14 @@
+{
+  "id": "key_panic",
+  "title": {
+    "en": "Panic button pressed",
+    "nl": "Paniekknop ingedrukt"
+  },
+  "args": [
+    {
+      "type": "device",
+      "name": "device",
+      "filter": "driver_id=keyfob"
+    }
+  ]
+}

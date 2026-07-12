@@ -1,0 +1,14 @@
+{
+  "id": "key_away",
+  "title": {
+    "en": "Away button pressed",
+    "nl": "Away-knop ingedrukt"
+  },
+  "args": [
+    {
+      "type": "device",
+      "name": "device",
+      "filter": "driver_id=keyfob"
+    }
+  ]
+}

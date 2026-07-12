@@ -1,0 +1,20 @@
+{
+  "name": "com.gerald.swannonekeyfob",
+  "version": "1.0.0",
+  "main": "app.js",
+  "private": true,
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc -p ."
+  },
+  "dependencies": {
+    "homey-zigbeedriver": "^2.1.0",
+    "zigbee-clusters": "^3.2.1"
+  },
+  "devDependencies": {
+    "@types/homey": "npm:homey-apps-sdk-v3-types@^0.3.1",
+    "@types/node": "^20.0.0",
+    "homey": "^3.0.0",
+    "typescript": "^5.0.0"
+  }
+}
