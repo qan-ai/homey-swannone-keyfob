@@ -4,5 +4,8 @@
   },
   "1.0.1": {
     "en": "Use the real device photo/icon design and add App Store product images."
+  },
+  "1.0.2": {
+    "en": "Use the real device photo as the app/driver icon."
   }
 }
