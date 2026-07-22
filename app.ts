@@ -17,7 +17,13 @@ class SwannOneApp extends Homey.App {
       return this.homey.drivers
         .getDriver('keyfob')
         .getDevices()
-        .map((device) => ({ name: device.getName(), id: device.getData().id }))
+        .map((device) => ({
+          name: device.getName(),
+          // Zigbee devices carry no `id` in their device data, so key on the
+          // whole data object instead — an undefined id silently vanishes when
+          // Homey persists the chosen item.
+          id: JSON.stringify(device.getData()),
+        }))
         .filter((item) => item.name.toLowerCase().includes(needle));
     });
   }

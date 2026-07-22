@@ -172,7 +172,7 @@
       ],
       "api": {
         "getStatus": {
-          "method": "GET",
+          "method": "POST",
           "path": "/status"
         }
       },

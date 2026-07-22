@@ -199,19 +199,32 @@
     card.innerHTML = html;
   }
 
+  // The setting arrives either as the whole {id, name} item or as a bare id
+  // string. Name is sent along as a fallback: Homey drops item fields that are
+  // undefined, so an id is not guaranteed to survive.
+  function readDeviceRef(settings) {
+    const value = settings && settings.device;
+    if (!value) return null;
+    if (typeof value === 'string') return { deviceId: value, deviceName: '' };
+    if (!value.id && !value.name) return null;
+    return { deviceId: value.id || '', deviceName: value.name || '' };
+  }
+
   function onHomeyReady(Homey) {
     Homey.ready();
 
     const settings = Homey.getSettings();
     const card = document.getElementById('card');
+    const ref = readDeviceRef(settings);
 
-    if (!settings || !settings.device || !settings.device.id) {
+    if (!ref) {
       card.innerHTML = '<div class="empty">' + escapeHtml(Homey.__('pick_device')) + '</div>';
       return;
     }
 
     const refresh = () => {
-      Homey.api('GET', '/status?deviceId=' + encodeURIComponent(settings.device.id))
+      // POST, not GET: Homey does not forward a payload on GET requests.
+      Homey.api('POST', '/status', ref)
         .then((data) => render(Homey, data))
         .catch((err) => {
           card.innerHTML = '<div class="empty">' + escapeHtml(err.message || String(err)) + '</div>';
