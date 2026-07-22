@@ -1,17 +1,26 @@
 {
   "1.0.0": {
-    "en": "Initial release: pair the SwannOne Key Fob (SWO-KEF1PA) directly to Homey and use its Home, Sleep, Away and Panic buttons in flows."
+    "en": "Initial release: pair the SwannOne Key Fob (SWO-KEF1PA) directly to Homey and use its Home, Sleep, Away and Panic buttons in flows.",
+    "nl": "Eerste versie: koppel de SwannOne Key Fob (SWO-KEF1PA) rechtstreeks aan Homey en gebruik de knoppen Thuis, Nacht, Afwezig en Paniek in flows."
   },
   "1.0.1": {
-    "en": "Use the real device photo/icon design and add App Store product images."
+    "en": "Use the real device photo/icon design and add App Store product images.",
+    "nl": "Echt apparaatontwerp als icoon en productafbeeldingen voor de App Store toegevoegd."
   },
   "1.0.2": {
-    "en": "Use the real device photo as the app/driver icon."
+    "en": "Use the real device photo as the app/driver icon.",
+    "nl": "Echte apparaatfoto als app-/driver-icoon."
   },
   "1.0.3": {
-    "en": "Use the real device photo (transparent background) as the app/driver icon."
+    "en": "Use the real device photo (transparent background) as the app/driver icon.",
+    "nl": "Echte apparaatfoto (transparante achtergrond) als app-/driver-icoon."
   },
   "1.0.4": {
-    "en": "Dashboard widget and a Last pressed status on the device screen. Store description, readme and images updated."
+    "en": "Dashboard widget and a Last pressed status on the device screen. Store description, readme and images updated.",
+    "nl": "Dashboard-widget en 'Laatst ingedrukt' op het apparaatscherm. Store-beschrijving, readme en afbeeldingen bijgewerkt."
+  },
+  "1.0.5": {
+    "en": "Dutch translations for the store description and changelog.",
+    "nl": "Nederlandse vertaling van de store-beschrijving en changelog."
   }
 }
