@@ -5,3 +5,6 @@ node_modules/
 
 # Design source exports (not part of the app bundle)
 *Hero*.png
+
+# Local notes, not part of the app
+reviewer-reply.txt
