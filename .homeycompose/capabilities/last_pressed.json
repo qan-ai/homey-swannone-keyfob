@@ -1,0 +1,29 @@
+{
+  "type": "enum",
+  "title": {
+    "en": "Last pressed",
+    "nl": "Laatst ingedrukt"
+  },
+  "getable": true,
+  "setable": false,
+  "uiComponent": "sensor",
+  "insights": false,
+  "values": [
+    {
+      "id": "home",
+      "title": { "en": "Home", "nl": "Thuis" }
+    },
+    {
+      "id": "away",
+      "title": { "en": "Away", "nl": "Afwezig" }
+    },
+    {
+      "id": "sleep",
+      "title": { "en": "Night", "nl": "Nacht" }
+    },
+    {
+      "id": "panic",
+      "title": { "en": "Panic", "nl": "Paniek" }
+    }
+  ]
+}

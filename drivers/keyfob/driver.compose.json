@@ -5,7 +5,7 @@
     "nl": "SwannOne Key Fob"
   },
   "class": "button",
-  "capabilities": [],
+  "capabilities": ["last_pressed"],
   "platforms": ["local"],
   "connectivity": ["zigbee"],
   "images": {

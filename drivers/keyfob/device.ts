@@ -24,6 +24,15 @@ const IAS_ACE_ENDPOINT_ID = 1;
 const HISTORY_LENGTH = 3;
 const STORE_KEY_HISTORY = 'pressHistory';
 
+// Shown on the device screen as "Last pressed".
+const CAPABILITY_LAST_PRESSED = 'last_pressed';
+const TRIGGER_CAPABILITY_VALUE: Record<string, string> = {
+  key_home: 'home',
+  key_away: 'away',
+  key_sleep: 'sleep',
+  key_panic: 'panic',
+};
+
 export interface PressRecord {
   trigger: string;
   at: number;
@@ -33,6 +42,11 @@ class SwannOneKeyFobDevice extends ZigBeeDevice {
   async onNodeInit({ zclNode }: { zclNode: ZCLNode }) {
     this.enableDebug();
     this.printNode();
+
+    // Fobs paired before this capability existed don't get it automatically.
+    if (!this.hasCapability(CAPABILITY_LAST_PRESSED)) {
+      await this.addCapability(CAPABILITY_LAST_PRESSED);
+    }
 
     const bound = new KeyFobBoundIasAceCluster({
       onArm: (args: ArmCommandArgs) => this._onArm(args),
@@ -58,6 +72,9 @@ class SwannOneKeyFobDevice extends ZigBeeDevice {
 
   _handlePress(triggerId: string) {
     this.log('Button pressed:', triggerId);
+
+    this.setCapabilityValue(CAPABILITY_LAST_PRESSED, TRIGGER_CAPABILITY_VALUE[triggerId])
+      .catch(this.error);
 
     this._recordPress(triggerId).catch(this.error);
 

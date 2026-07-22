@@ -102,7 +102,9 @@
         "nl": "SwannOne Key Fob"
       },
       "class": "button",
-      "capabilities": [],
+      "capabilities": [
+        "last_pressed"
+      ],
       "platforms": [
         "local"
       ],
@@ -175,6 +177,49 @@
         }
       },
       "id": "status"
+    }
+  },
+  "capabilities": {
+    "last_pressed": {
+      "type": "enum",
+      "title": {
+        "en": "Last pressed",
+        "nl": "Laatst ingedrukt"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "insights": false,
+      "values": [
+        {
+          "id": "home",
+          "title": {
+            "en": "Home",
+            "nl": "Thuis"
+          }
+        },
+        {
+          "id": "away",
+          "title": {
+            "en": "Away",
+            "nl": "Afwezig"
+          }
+        },
+        {
+          "id": "sleep",
+          "title": {
+            "en": "Night",
+            "nl": "Nacht"
+          }
+        },
+        {
+          "id": "panic",
+          "title": {
+            "en": "Panic",
+            "nl": "Paniek"
+          }
+        }
+      ]
     }
   }
 }
