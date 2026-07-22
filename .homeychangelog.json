@@ -10,5 +10,8 @@
   },
   "1.0.3": {
     "en": "Use the real device photo (transparent background) as the app/driver icon."
+  },
+  "1.0.4": {
+    "en": "Dashboard widget and a Last pressed status on the device screen. Store description, readme and images updated."
   }
 }
