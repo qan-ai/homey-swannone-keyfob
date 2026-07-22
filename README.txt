@@ -1,11 +1,3 @@
-Use the Swann SwannOne Key Fob (SWO-KEF1PA) as a standalone Zigbee remote in Homey — no SwannOne hub required.
+Keep control of your home in your pocket. This app lets you pair the SwannOne key fob straight to Homey over Zigbee, without needing the original SwannOne hub, so a remote that would otherwise be useless finds a second life.
 
-Pair the key fob directly to Homey and use its four buttons in your flows:
-- Home button pressed
-- Sleep button pressed
-- Away button pressed
-- Panic button pressed
-
-To pair: Devices > Add device > SwannOne Key Fob, then hold the pairing button on the back of the fob until the LED flashes.
-
-There is no official Homey integration for this device — this app decodes the Zigbee commands the fob sends directly.
+Each button on the fob can start any Flow you like: arm the house when you leave, switch everything off at bedtime, welcome yourself home, or trigger an alert in a hurry.

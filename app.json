@@ -2,7 +2,7 @@
   "_comment": "This file is generated. Please edit .homeycompose/app.json instead.",
   "id": "com.gerald.swannonekeyfob",
   "version": "1.0.3",
-  "compatibility": ">=5.0.0",
+  "compatibility": ">=12.1.0",
   "sdk": 3,
   "platforms": [
     "local"
@@ -12,8 +12,8 @@
     "nl": "SwannOne Key Fob"
   },
   "description": {
-    "en": "Use the Swann SwannOne Key Fob (SWO-KEF1PA) as a Zigbee remote in Homey flows.",
-    "nl": "Gebruik de Swann SwannOne Key Fob (SWO-KEF1PA) als Zigbee-afstandsbediening in Homey-flows."
+    "en": "Control your home with a press of your key fob.",
+    "nl": "Bedien je huis met een druk op je sleutelhanger."
   },
   "category": [
     "security"
@@ -150,5 +150,31 @@
         }
       ]
     }
-  ]
+  ],
+  "widgets": {
+    "status": {
+      "name": {
+        "en": "Key Fob status",
+        "nl": "Sleutelhanger-status"
+      },
+      "height": 190,
+      "settings": [
+        {
+          "id": "device",
+          "type": "autocomplete",
+          "title": {
+            "en": "Key Fob",
+            "nl": "Sleutelhanger"
+          }
+        }
+      ],
+      "api": {
+        "getStatus": {
+          "method": "GET",
+          "path": "/status"
+        }
+      },
+      "id": "status"
+    }
+  }
 }

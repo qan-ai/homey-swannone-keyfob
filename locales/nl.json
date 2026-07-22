@@ -1,0 +1,13 @@
+{
+  "last_pressed": "Laatst ingedrukt",
+  "no_presses": "Nog geen knop ingedrukt. Druk op een knop van de sleutelhanger om die hier te zien.",
+  "pick_device": "Kies een sleutelhanger in de widget-instellingen.",
+  "just_now": "nu",
+  "minutes_ago": "%s min geleden",
+  "hours_ago": "%s u geleden",
+  "days_ago": "%s d geleden",
+  "mode_home": "Thuis",
+  "mode_away": "Afwezig",
+  "mode_sleep": "Nacht",
+  "mode_panic": "Paniek"
+}

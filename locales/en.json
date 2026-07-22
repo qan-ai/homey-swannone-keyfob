@@ -1,0 +1,13 @@
+{
+  "last_pressed": "Last pressed",
+  "no_presses": "No button pressed yet. Press a button on the key fob to see it here.",
+  "pick_device": "Choose a key fob in the widget settings.",
+  "just_now": "now",
+  "minutes_ago": "%s min ago",
+  "hours_ago": "%s h ago",
+  "days_ago": "%s d ago",
+  "mode_home": "Home",
+  "mode_away": "Away",
+  "mode_sleep": "Night",
+  "mode_panic": "Panic"
+}

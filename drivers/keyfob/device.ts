@@ -18,6 +18,17 @@ const ARM_MODE_TRIGGER: Record<string, string> = {
 // show otherwise, adjust here.
 const IAS_ACE_ENDPOINT_ID = 1;
 
+// Press history kept for the dashboard widget: the current state plus the two
+// presses before it. The fob is a transmitter with no readable state of its
+// own, so "current mode" is only ever an inference from the last press.
+const HISTORY_LENGTH = 3;
+const STORE_KEY_HISTORY = 'pressHistory';
+
+export interface PressRecord {
+  trigger: string;
+  at: number;
+}
+
 class SwannOneKeyFobDevice extends ZigBeeDevice {
   async onNodeInit({ zclNode }: { zclNode: ZCLNode }) {
     this.enableDebug();
@@ -38,19 +49,33 @@ class SwannOneKeyFobDevice extends ZigBeeDevice {
       this.log('Received arm command with unhandled armMode', args.armMode);
       return;
     }
+    this._handlePress(triggerId);
+  }
+
+  _onPanic() {
+    this._handlePress('key_panic');
+  }
+
+  _handlePress(triggerId: string) {
     this.log('Button pressed:', triggerId);
+
+    this._recordPress(triggerId).catch(this.error);
+
     this.homey.flow
       .getDeviceTriggerCard(triggerId)
       .trigger(this)
       .catch(this.error);
   }
 
-  _onPanic() {
-    this.log('Button pressed: key_panic');
-    this.homey.flow
-      .getDeviceTriggerCard('key_panic')
-      .trigger(this)
-      .catch(this.error);
+  async _recordPress(trigger: string) {
+    const history = this.getPressHistory();
+    history.unshift({ trigger, at: Date.now() });
+    await this.setStoreValue(STORE_KEY_HISTORY, history.slice(0, HISTORY_LENGTH));
+  }
+
+  getPressHistory(): PressRecord[] {
+    const stored = this.getStoreValue(STORE_KEY_HISTORY);
+    return Array.isArray(stored) ? stored : [];
   }
 }
 

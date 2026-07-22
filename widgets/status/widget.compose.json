@@ -1,0 +1,20 @@
+{
+  "name": {
+    "en": "Key Fob status",
+    "nl": "Sleutelhanger-status"
+  },
+  "height": 190,
+  "settings": [
+    {
+      "id": "device",
+      "type": "autocomplete",
+      "title": {
+        "en": "Key Fob",
+        "nl": "Sleutelhanger"
+      }
+    }
+  ],
+  "api": {
+    "getStatus": { "method": "GET", "path": "/status" }
+  }
+}

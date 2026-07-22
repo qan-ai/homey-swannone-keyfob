@@ -1,0 +1,226 @@
+<!-- Deliberately a self-contained dark card: it reads the same on a light or
+     dark dashboard, and matches the fob's own visual language. -->
+<style>
+  body.homey-widget {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+
+  .card {
+    background: #0F1721;
+    border-radius: 18px;
+    padding: 14px 16px;
+    color: #ffffff;
+  }
+
+  .current {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+  }
+
+  .badge-icon {
+    flex: 0 0 auto;
+    width: 46px;
+    height: 46px;
+    border-radius: 13px;
+    background: #2F7BF6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .badge-icon svg {
+    width: 24px;
+    height: 24px;
+    fill: none;
+    stroke: #ffffff;
+    stroke-width: 1.9;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .current-text {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  .label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: #8A94A3;
+    margin-bottom: 1px;
+  }
+
+  .mode {
+    font-size: 19px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .chip {
+    flex: 0 0 auto;
+    background: #35D48F;
+    color: #06301F;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    padding: 5px 11px;
+    border-radius: 999px;
+  }
+
+  .history {
+    margin-top: 12px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding-top: 9px;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+  }
+
+  .row {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    font-size: 13px;
+    color: #9AA4B2;
+  }
+
+  .row svg {
+    flex: 0 0 auto;
+    width: 15px;
+    height: 15px;
+    fill: none;
+    stroke: #6E7887;
+    stroke-width: 1.9;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .row .name {
+    flex: 1 1 auto;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .row .when {
+    flex: 0 0 auto;
+    color: #626C7A;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .empty {
+    font-size: 13px;
+    color: #8A94A3;
+    line-height: 1.45;
+  }
+</style>
+
+<div class="card" id="card">
+  <div class="empty" id="loading">…</div>
+</div>
+
+<script>
+  // Mirrors the four buttons on the fob itself.
+  const MODES = {
+    key_home: { key: 'mode_home', icon: 'home' },
+    key_away: { key: 'mode_away', icon: 'away' },
+    key_sleep: { key: 'mode_sleep', icon: 'sleep' },
+    key_panic: { key: 'mode_panic', icon: 'panic' },
+  };
+
+  const ICONS = {
+    home: '<path d="M3 10.5 12 3l9 7.5"/><path d="M5.5 9.5V20h13V9.5"/><path d="M10 20v-5h4v5"/>',
+    away: '<path d="M4 3v18"/><path d="M13 7.5 11 12l3 2.5V20"/><path d="M14 14.5 18 13"/><path d="M11 12 8 14"/><circle cx="14.5" cy="4.5" r="1.8"/>',
+    sleep: '<path d="M20 14.2A8.2 8.2 0 0 1 9.8 4 8.4 8.4 0 1 0 20 14.2Z"/>',
+    panic: '<circle cx="12" cy="12" r="3.2"/><path d="M12 3v2.2M12 18.8V21M3 12h2.2M18.8 12H21M5.6 5.6l1.6 1.6M16.8 16.8l1.6 1.6M18.4 5.6l-1.6 1.6M7.2 16.8l-1.6 1.6"/>',
+  };
+
+  function svg(icon) {
+    return '<svg viewBox="0 0 24 24">' + ICONS[icon] + '</svg>';
+  }
+
+  function escapeHtml(value) {
+    return String(value).replace(/[&<>"']/g, (c) => ({
+      '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;',
+    })[c]);
+  }
+
+  function relativeTime(Homey, timestamp) {
+    const minutes = Math.floor((Date.now() - timestamp) / 60000);
+    if (minutes < 1) return Homey.__('just_now');
+    if (minutes < 60) return Homey.__('minutes_ago').replace('%s', minutes);
+    const hours = Math.floor(minutes / 60);
+    if (hours < 24) return Homey.__('hours_ago').replace('%s', hours);
+    return Homey.__('days_ago').replace('%s', Math.floor(hours / 24));
+  }
+
+  function render(Homey, data) {
+    const card = document.getElementById('card');
+    const history = data.history || [];
+
+    if (!history.length) {
+      card.innerHTML = '<div class="empty">' + escapeHtml(Homey.__('no_presses')) + '</div>';
+      return;
+    }
+
+    const [current, ...previous] = history;
+    const currentMode = MODES[current.trigger];
+
+    let html = ''
+      + '<div class="current">'
+      + '<div class="badge-icon">' + svg(currentMode.icon) + '</div>'
+      + '<div class="current-text">'
+      + '<div class="label">' + escapeHtml(Homey.__('last_pressed')) + '</div>'
+      + '<div class="mode">' + escapeHtml(Homey.__(currentMode.key)) + '</div>'
+      + '</div>'
+      + '<div class="chip">' + escapeHtml(relativeTime(Homey, current.at)) + '</div>'
+      + '</div>';
+
+    if (previous.length) {
+      html += '<div class="history">';
+      previous.forEach((entry) => {
+        const mode = MODES[entry.trigger];
+        html += '<div class="row">'
+          + svg(mode.icon)
+          + '<span class="name">' + escapeHtml(Homey.__(mode.key)) + '</span>'
+          + '<span class="when">' + escapeHtml(relativeTime(Homey, entry.at)) + '</span>'
+          + '</div>';
+      });
+      html += '</div>';
+    }
+
+    card.innerHTML = html;
+  }
+
+  function onHomeyReady(Homey) {
+    Homey.ready();
+
+    const settings = Homey.getSettings();
+    const card = document.getElementById('card');
+
+    if (!settings || !settings.device || !settings.device.id) {
+      card.innerHTML = '<div class="empty">' + escapeHtml(Homey.__('pick_device')) + '</div>';
+      return;
+    }
+
+    const refresh = () => {
+      Homey.api('GET', '/status?deviceId=' + encodeURIComponent(settings.device.id))
+        .then((data) => render(Homey, data))
+        .catch((err) => {
+          card.innerHTML = '<div class="empty">' + escapeHtml(err.message || String(err)) + '</div>';
+        });
+    };
+
+    refresh();
+    // The fob is a sleepy end device with no reporting, so there is nothing to
+    // subscribe to — poll instead, cheaply, since this only reads local state.
+    setInterval(refresh, 5000);
+  }
+</script>
