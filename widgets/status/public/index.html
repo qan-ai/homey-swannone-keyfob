@@ -217,8 +217,13 @@
     const card = document.getElementById('card');
     const ref = readDeviceRef(settings);
 
+    // Shrink the widget to its actual content: with few or no history rows the
+    // fixed reserved height leaves a large empty gap below the card.
+    const syncHeight = () => Homey.setHeight(document.body.scrollHeight);
+
     if (!ref) {
       card.innerHTML = '<div class="empty">' + escapeHtml(Homey.__('pick_device')) + '</div>';
+      syncHeight();
       return;
     }
 
@@ -228,7 +233,8 @@
         .then((data) => render(Homey, data))
         .catch((err) => {
           card.innerHTML = '<div class="empty">' + escapeHtml(err.message || String(err)) + '</div>';
-        });
+        })
+        .then(syncHeight);
     };
 
     refresh();
