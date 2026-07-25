@@ -22,5 +22,9 @@
   "1.0.5": {
     "en": "Dutch translations for the store description and changelog.",
     "nl": "Nederlandse vertaling van de store-beschrijving en changelog."
+  },
+  "1.0.6": {
+    "en": "New single-colour app icon and redesigned widget preview. Renamed the app to SwannOne to make room for more devices later.",
+    "nl": "Nieuw eenkleurig app-icoon en vernieuwde widget-preview. App hernoemd naar SwannOne om later ruimte te maken voor meer apparaten."
   }
 }
