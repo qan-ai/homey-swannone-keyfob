@@ -26,5 +26,9 @@
   "1.0.6": {
     "en": "New single-colour app icon and redesigned widget preview. Renamed the app to SwannOne to make room for more devices later.",
     "nl": "Nieuw eenkleurig app-icoon en vernieuwde widget-preview. App hernoemd naar SwannOne om later ruimte te maken voor meer apparaten."
+  },
+  "1.0.7": {
+    "en": "Line-art app and device icons, and a larger widget preview.",
+    "nl": "Lijn-art app- en apparaaticonen, en een grotere widget-preview."
   }
 }
