@@ -1,34 +1,38 @@
 {
-  "1.0.0": {
-    "en": "Initial release: pair the SwannOne Key Fob (SWO-KEF1PA) directly to Homey and use its Home, Sleep, Away and Panic buttons in flows.",
-    "nl": "Eerste versie: koppel de SwannOne Key Fob (SWO-KEF1PA) rechtstreeks aan Homey en gebruik de knoppen Thuis, Nacht, Afwezig en Paniek in flows."
-  },
-  "1.0.1": {
-    "en": "Use the real device photo/icon design and add App Store product images.",
-    "nl": "Echt apparaatontwerp als icoon en productafbeeldingen voor de App Store toegevoegd."
-  },
-  "1.0.2": {
-    "en": "Use the real device photo as the app/driver icon.",
-    "nl": "Echte apparaatfoto als app-/driver-icoon."
-  },
-  "1.0.3": {
-    "en": "Use the real device photo (transparent background) as the app/driver icon.",
-    "nl": "Echte apparaatfoto (transparante achtergrond) als app-/driver-icoon."
+  "1.0.8": {
+    "nl": "Store-afbeelding zonder dubbele tekst.",
+    "en": "Store image without duplicate text."
   },
   "1.0.4": {
-    "en": "Dashboard widget and a Last pressed status on the device screen. Store description, readme and images updated.",
-    "nl": "Dashboard-widget en 'Laatst ingedrukt' op het apparaatscherm. Store-beschrijving, readme en afbeeldingen bijgewerkt."
-  },
-  "1.0.5": {
-    "en": "Dutch translations for the store description and changelog.",
-    "nl": "Nederlandse vertaling van de store-beschrijving en changelog."
-  },
-  "1.0.6": {
-    "en": "New single-colour app icon and redesigned widget preview. Renamed the app to SwannOne to make room for more devices later.",
-    "nl": "Nieuw eenkleurig app-icoon en vernieuwde widget-preview. App hernoemd naar SwannOne om later ruimte te maken voor meer apparaten."
+    "nl": "Dashboard-widget en 'Laatst ingedrukt' op het apparaatscherm. Store-beschrijving, readme en afbeeldingen bijgewerkt.",
+    "en": "Dashboard widget and a Last pressed status on the device screen. Store description, readme and images updated."
   },
   "1.0.7": {
-    "en": "Line-art app and device icons, and a larger widget preview.",
-    "nl": "Lijn-art app- en apparaaticonen, en een grotere widget-preview."
+    "nl": "Lijn-art app- en apparaaticonen, en een grotere widget-preview.",
+    "en": "Line-art app and device icons, and a larger widget preview."
+  },
+  "1.0.2": {
+    "nl": "Echte apparaatfoto als app-/driver-icoon.",
+    "en": "Use the real device photo as the app/driver icon."
+  },
+  "1.0.0": {
+    "nl": "Eerste versie: koppel de SwannOne Key Fob (SWO-KEF1PA) rechtstreeks aan Homey en gebruik de knoppen Thuis, Nacht, Afwezig en Paniek in flows.",
+    "en": "Initial release: pair the SwannOne Key Fob (SWO-KEF1PA) directly to Homey and use its Home, Sleep, Away and Panic buttons in flows."
+  },
+  "1.0.1": {
+    "nl": "Echt apparaatontwerp als icoon en productafbeeldingen voor de App Store toegevoegd.",
+    "en": "Use the real device photo/icon design and add App Store product images."
+  },
+  "1.0.6": {
+    "nl": "Nieuw eenkleurig app-icoon en vernieuwde widget-preview. App hernoemd naar SwannOne om later ruimte te maken voor meer apparaten.",
+    "en": "New single-colour app icon and redesigned widget preview. Renamed the app to SwannOne to make room for more devices later."
+  },
+  "1.0.5": {
+    "nl": "Nederlandse vertaling van de store-beschrijving en changelog.",
+    "en": "Dutch translations for the store description and changelog."
+  },
+  "1.0.3": {
+    "nl": "Echte apparaatfoto (transparante achtergrond) als app-/driver-icoon.",
+    "en": "Use the real device photo (transparent background) as the app/driver icon."
   }
 }
